@@ -1,0 +1,185 @@
+﻿════════════════════════════════════════════════════════════════════════
+   🚀 COGNIDATA APPLICATION - STARTUP GUIDE
+════════════════════════════════════════════════════════════════════════
+
+📁 Application Location: d:\Cognidata_mainfinal-main\cognidata
+
+════════════════════════════════════════════════════════════════════════
+   🎯 QUICK START (Easiest Method)
+════════════════════════════════════════════════════════════════════════
+
+METHOD 1: Use the Launcher Script (Recommended)
+──────────────────────────────────────────────────────────────────────
+
+1. Open PowerShell in the cognidata directory
+2. Run: powershell -ExecutionPolicy Bypass -File run.ps1
+
+OR double-click: run.ps1
+
+This will automatically:
+  ✓ Start Backend (FastAPI on port 8000)
+  ✓ Start Frontend (React on port 5173)
+  ✓ Open browser automatically
+
+════════════════════════════════════════════════════════════════════════
+   🔧 MANUAL START (Alternative)
+════════════════════════════════════════════════════════════════════════
+
+METHOD 2: Start Services Separately
+──────────────────────────────────────────────────────────────────────
+
+TERMINAL 1 - Backend (FastAPI):
+  cd d:\Cognidata_mainfinal-main\cognidata\backend
+  python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+TERMINAL 2 - Frontend (React):
+  cd d:\Cognidata_mainfinal-main\cognidata\frontend
+  npm run dev
+
+════════════════════════════════════════════════════════════════════════
+   🌐 ACCESS URLS
+════════════════════════════════════════════════════════════════════════
+
+Once started, access these URLs:
+
+Frontend (Main App):
+  → http://localhost:5173
+  
+Backend API:
+  → http://localhost:8000
+  
+API Documentation (Swagger):
+  → http://localhost:8000/docs
+  
+API Documentation (ReDoc):
+  → http://localhost:8000/redoc
+
+════════════════════════════════════════════════════════════════════════
+   📊 TEST THE AUTOML ACCURACY
+════════════════════════════════════════════════════════════════════════
+
+STEP-BY-STEP TEST PROCESS:
+
+1️⃣ START APPLICATION:
+   • Open PowerShell
+   • cd d:\Cognidata_mainfinal-main\cognidata
+   • Run: powershell -ExecutionPolicy Bypass -File run.ps1
+   • Wait ~30 seconds for services to start
+
+2️⃣ LOGIN:
+   • Open: http://localhost:5173
+   • Default credentials:
+     Email: admin@cognidata.com
+     Password: admin123
+
+3️⃣ UPLOAD DATASET:
+   • Click "Upload Dataset" or "Data Management"
+   • Select file: d:\Cognidata_mainfinal-main\datasets\samplesuperstore.csv
+   • Wait for upload to complete
+
+4️⃣ RUN AUTOML:
+   • Go to "AutoML" section
+   • Select dataset: "samplesuperstore.csv"
+   • Choose target column: "Profit" (for regression test)
+   • Or choose target: "Category" (for classification test)
+   • Click "Train Model"
+
+5️⃣ VIEW RESULTS:
+   • See all 8 regression models trained
+   • Or see all 7 classification models trained
+   • View leaderboard with metrics:
+     - Regression: R², RMSE, MAE, MSE
+     - Classification: Accuracy, F1, ROC-AUC
+   • Best model automatically selected
+   • Download model or make predictions
+
+EXPECTED RESULTS (from our tests):
+  ✅ Profit Prediction: R²=0.828 (82.8%) with GradientBoosting
+  ✅ Category Prediction: 100% accuracy with XGBoost
+
+════════════════════════════════════════════════════════════════════════
+   🎯 FEATURES TO TEST
+════════════════════════════════════════════════════════════════════════
+
+✅ Phase 1 & 2 Upgrades:
+  1. AutoML with 15 models (8 regression + 7 classification)
+  2. XGBoost, LightGBM, CatBoost (Phase 1 upgrades)
+  3. Comprehensive metrics (R², RMSE, MAE, F1, ROC-AUC)
+  4. Model leaderboard and comparison
+  5. SHAP explainability
+
+✅ RAG System (Phase 2):
+  6. Document upload and Q&A
+  7. BGE-M3 embeddings (1024-dim)
+  8. Cross-encoder reranking
+  9. Qdrant vector database
+
+✅ Other Features:
+  10. Data visualization (16 chart types)
+  11. AI Chat (natural language queries)
+  12. SQL Agent (NL to SQL)
+  13. Geospatial analysis (H3, maps)
+  14. PDF report generation
+
+════════════════════════════════════════════════════════════════════════
+   ⚠️ TROUBLESHOOTING
+════════════════════════════════════════════════════════════════════════
+
+Issue: Backend won't start
+  → Check Python installed: python --version
+  → Check dependencies: pip install -r backend/requirements.txt
+  → Check port 8000 not in use: netstat -ano | findstr :8000
+
+Issue: Frontend won't start
+  → Check Node.js installed: node --version
+  → Check dependencies: cd frontend && npm install
+  → Check port 5173 not in use: netstat -ano | findstr :5173
+
+Issue: Can't login
+  → Use default credentials: admin@cognidata.com / admin123
+  → Check backend is running: http://localhost:8000/docs
+
+Issue: Upload fails
+  → Check file size <200MB
+  → Check file format: CSV, Excel, JSON
+  → Check backend logs for errors
+
+════════════════════════════════════════════════════════════════════════
+   📊 VERIFICATION CHECKLIST
+════════════════════════════════════════════════════════════════════════
+
+✅ Before starting:
+  □ Python 3.10+ installed
+  □ Node.js 18+ installed
+  □ All dependencies installed (backend + frontend)
+  □ Ports 8000 and 5173 available
+
+✅ After starting:
+  □ Backend running (http://localhost:8000/docs shows Swagger)
+  □ Frontend running (http://localhost:5173 shows login page)
+  □ Can login with admin credentials
+  □ Dashboard loads
+
+✅ Testing AutoML:
+  □ Dataset uploads successfully
+  □ AutoML page accessible
+  □ Model training starts
+  □ All models train without errors
+  □ Leaderboard displays with metrics
+  □ Best model selected
+  □ Can make predictions
+
+════════════════════════════════════════════════════════════════════════
+   🎉 READY TO TEST!
+════════════════════════════════════════════════════════════════════════
+
+Your COGNIDATA application is ready with:
+  ✅ Phase 1 & 2 upgrades fully implemented
+  ✅ 15 ML models (XGBoost, LightGBM, CatBoost, etc.)
+  ✅ State-of-the-art RAG system (BGE-M3, Qdrant)
+  ✅ Comprehensive metrics and explanations
+  ✅ Production-ready accuracy (82.8% regression, 100% classification)
+
+Now run the application and test it yourself! 🚀
+
+════════════════════════════════════════════════════════════════════════

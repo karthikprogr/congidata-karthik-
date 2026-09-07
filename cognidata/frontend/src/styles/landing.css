@@ -1,0 +1,201 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-glow: var(--glow);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --font-display: "Space Grotesk", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-glow: 0 0 40px -8px rgba(124, 58, 237, 0.55);
+  --shadow-card: 0 20px 60px -20px rgba(5, 8, 22, 0.8);
+}
+
+:root {
+  --radius: 0.9rem;
+
+  /* CogniData — Black & Gold premium palette */
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --surface: #0A0A0A;
+  --surface-2: #141414;
+
+  --card: rgba(20, 20, 20, 0.7);
+  --card-foreground: #FFFFFF;
+  --popover: #0A0A0A;
+  --popover-foreground: #FFFFFF;
+
+  --primary: #FACC15;
+  --primary-foreground: #000000;
+  --secondary: #F59E0B;
+  --secondary-foreground: #000000;
+  --accent: #FDE047;
+  --accent-foreground: #000000;
+
+  --success: #EAB308;
+  --warning: #F59E0B;
+
+  --muted: #0F0F0F;
+  --muted-foreground: #A1A1AA;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+
+  --border: rgba(250, 204, 21, 0.12);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #FACC15;
+  --glow: rgba(250, 204, 21, 0.55);
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-image:
+      radial-gradient(60rem 60rem at 10% -10%, rgba(250, 204, 21, 0.10), transparent 60%),
+      radial-gradient(50rem 50rem at 100% 10%, rgba(245, 158, 11, 0.08), transparent 60%),
+      radial-gradient(40rem 40rem at 50% 100%, rgba(253, 224, 71, 0.08), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: rgba(250, 204, 21, 0.4);
+    color: #000;
+  }
+
+  a {
+    color: #FACC15;
+    transition: color 200ms ease;
+  }
+  a:hover {
+    color: #FDE047;
+  }
+}
+
+@utility glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(250, 204, 21, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+@utility glass-strong {
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid rgba(250, 204, 21, 0.15);
+  backdrop-filter: blur(20px);
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    #FDE047 0%,
+    #FACC15 45%,
+    #F59E0B 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgba(250, 204, 21, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250, 204, 21, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+}
+
+@utility glow-ring {
+  box-shadow:
+    0 0 0 1px rgba(250, 204, 21, 0.15),
+    0 0 40px -6px rgba(250, 204, 21, 0.5),
+    0 20px 60px -20px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-14px) }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1) }
+  50% { opacity: 1; transform: scale(1.05) }
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%) }
+  100% { transform: translateX(100%) }
+}
+@keyframes marquee {
+  from { transform: translateX(0) }
+  to { transform: translateX(-50%) }
+}
+
+@utility animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+@utility animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+@utility animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+}

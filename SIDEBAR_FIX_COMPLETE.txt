@@ -1,0 +1,40 @@
+﻿===========================================
+✅ SIDEBAR STATUS UPDATE - FIXED
+===========================================
+
+ISSUE REPORTED:
+After uploading a dataset, the profile section at the bottom of the sidebar
+still shows 'No dataset' and doesn't update.
+
+ROOT CAUSES FOUND:
+1. Dataset status was only fetched ONCE on component mount - never refreshed
+2. Gemini API key was not being detected for LLM provider display
+
+FIXES APPLIED:
+
+✅ 1. DATASET STATUS AUTO-REFRESH
+   - Changed from one-time fetch to polling every 10 seconds
+   - Now automatically detects when you upload a new dataset
+   - Updates the sidebar within 10 seconds of upload
+   Location: frontend/src/components/Sidebar.jsx (lines 109-116)
+
+✅ 2. GEMINI PROVIDER DETECTION
+   - Added Gemini API key detection to LLM provider check
+   - Priority order: Gemini → AIML → OpenAI
+   - Shows 'Gemini Flash 🟣' when gemini_key exists in localStorage
+   Location: frontend/src/components/Sidebar.jsx (lines 100-108)
+
+HOW IT WORKS NOW:
+1. After uploading a dataset, wait up to 10 seconds
+2. The sidebar will automatically refresh and show:
+   - Row count × column count (e.g., '10,194×21')
+   - Green color indicating dataset is loaded
+3. LLM provider will show 'Gemini Flash 🟣' if you have Gemini configured
+
+TESTING INSTRUCTIONS:
+1. Refresh your frontend (Ctrl+Shift+R)
+2. Upload a dataset
+3. Within 10 seconds, the sidebar should update automatically
+4. Check that 'LLM' section shows 'Gemini Flash 🟣'
+
+✨ The sidebar now auto-updates without requiring page refresh!
